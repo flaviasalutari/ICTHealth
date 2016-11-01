@@ -85,7 +85,7 @@ R = (1/N) * y.' * y;
 [U, A] = eig(R);
 % DINAMICA L
 total_eig = sum(diag(A));
-percentage_thresh = 0.9 * total_eig;
+percentage_thresh = 0.97 * total_eig;
 
 sum_diag = 0;
 L = 1;
@@ -111,8 +111,8 @@ dotprod2 = Z*wmeans'; % matrix with the dot product between
 dist2_b=U2+V2-2*dotprod2; %|y(n)|^2+|x(k)|^2-2y(n)x(k)= 
 % =|y(n)-x(k)|^2
 var_patients = var(Z')';
-dist2_b(:,1) = dist2_b(:,1) - (2 * var_patients * log(pi1));
-dist2_b(:,2) = dist2_b(:,2) - (2 * var_patients * log(pi2));
+dist2_b(:,1) = dist2_b(:,1) - (2 * var_patients * log10(pi1));
+dist2_b(:,2) = dist2_b(:,2) - (2 * var_patients * log10(pi2));
 
 [dummy, previsione_bayes] = min(dist2_b.');
 previsione_bayes = previsione_bayes.';
@@ -137,7 +137,7 @@ for i = 1 : length(class_id)
     end
 end
 
-specificity_b = verinegativi_b / (verinegativi_b + falsipositivi_b); % true negative
-sensitivity_b = veripositivi_b / (veripositivi_b + falsinegativi_b); % true positive
-falsealarm_b = falsipositivi_b / (verinegativi_b + falsipositivi_b); 
+specificity_b = verinegativi / (verinegativi + falsipositivi); %true negative
+sensitivity_b = veripositivi / (veripositivi + falsinegativi); % true positive
+falsealarm_b = falsipositivi / (verinegativi + falsipositivi);
 misseddetection_b = falsinegativi_b / (veripositivi_b + falsinegativi_b);
