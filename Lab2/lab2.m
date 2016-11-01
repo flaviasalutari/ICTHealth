@@ -57,8 +57,8 @@ mean(data_train_norm,1); % verify it is zero mean and va = 1??
 var(data_train_norm,1);
 
 % Perform regression [2]
-F0 = 7;
-y_train=data_train_norm(:,F0); %% feature che elimino e poi vorrò stimare
+F0 = 7; % // 5
+y_train=data_train_norm(:,F0); %% feature che elimino e poi vorr? stimare
 X_train=data_train_norm;
 X_train(:,F0)=[];  %% tutte le feature senza F0 
 
@@ -66,86 +66,78 @@ y_test=data_test_norm(:,F0);
 X_test=data_test_norm;
 X_test(:,F0)=[];
 
-%% MSE
-a_hat = inv(X_train(:,5:end).' * X_train(:,5:end)) * X_train(:,5:end).' * y_train; % 
+%%% PCR
+N = size(X_train,1);
+R = (1/N) * X_train(:,5:end).' * X_train(:,5:end);
+[U, A] = eig(R);
+Z = X_train(:, 5:end) * U;
 
-% stima valori _ train
-y_train_hat = X_train(:,5:end) * a_hat;
+Z_norm = (1 / sqrt(N)) * Z * A^(-1/2);
+Z_y = Z_norm.' * y_train;
+y_hat = Z_norm * Z_y;
+% a = inv(X_train*X_train.') * X_train * y_train;
+a = (1/N) * U * inv(A) * U.' * X_train(:,5:end).' * y_train;
+y_hat_2_train = X_train(:,5:end) * a; %%% ?????????????????????
 
 figure
-plot(y_train_hat)
+plot(y_hat_2_train, '-y')
 hold on
-plot(y_train, '-r')
+plot(y_train)
+grid on
+title('y train')
 
-% stima valori _ test
-y_test_hat = X_test(:,5:end) * a_hat;
+% test
+
+y_hat_test = X_test(:,5:end) * a;
 
 figure
-plot(y_test_hat)
+plot(y_hat_test, '-y')
 hold on
-plot(y_test, '-r')
+plot(y_test)
+grid on
+title('y test')
 
-%%% istogrammi
-figure
-hist(y_train - y_train_hat, 50)
-figure
-hist(y_test - y_test_hat, 50) %% dagli istogrammi capiamo che la dist
-% degli errori è circa una gaussiana? a cosa è dovuto?
 
-%%% CHIEDERE !!!!!! a^ che abbiamo trovato, per trovare la 7esima feature
-%%% si fa la combinazione lineare di a_hat * la riga relativa a un paziente
-%%% con tutte le sue features?
+%%%%%%%%%%%% L %%%%%%%%%%
 
-%% the gradient algorithm
-rng('default')
-a_i = rand(17,1);
-gamma = 10^-7;
-epsilon = 10^-6;
-a2 = zeros(17,1);
-i=1;
+K = 1;
+total_eig = sum(diag(A));
+percentage_thresh = 0.98 * total_eig;
 
-while (norm(a_i - a2) > epsilon)
-    grad_a_i = - 2* X_train(:,5:end).' * y_train + 2 * X_train(:,5:end).' * X_train(:,5:end) * a_i;
-    a_ii = a_i - (gamma * grad_a_i);
-    a2 = a_i;
-    a_i = a_ii;
-    i=i+1
+sum_diag = 0;
+L = 1;
+while sum_diag < percentage_thresh
+    sum_diag = A(L,L) + sum_diag; 
+    L = L+1;
 end
-a_hat = a_i;
+%precedente U = 5
 
-% stima valori _ train
-y_train_hat = X_train(:,5:end) * a_hat;
+U_L = U(:,K:L);
+A_L = A(K:L,K:L);
+
+Z_norm_L = 1/sqrt(N) * X_train(:,5:end) * U_L * A_L ^(-1/2);
+
+Z_y_L = Z_norm_L.' * y_train;
+
+y_hat_L = Z_norm_L * Z_y_L;
+
+a_hat_L = 1/N * U_L * inv(A_L) * U_L.' * X_train(:,5:end).' *y_hat_L;
+
+stima_L = X_train(:,5:end) * a_hat_L;
+stima_L_2 = X_test(:,5:end) * a_hat_L;
+
+errore = norm(stima_L_2-y_test);
 
 figure
-plot(y_train_hat)
+plot(stima_L)
 hold on
-plot(y_train, '-r')
-
-% stima valori _ test
-y_test_hat = X_test(:,5:end) * a_hat;
+plot(y_train)
+grid on
+title('With L, train')
 
 figure
-plot(y_test_hat)
+plot(stima_L_2)
 hold on
-plot(y_test, '-r')
-
-%%% istogrammi
-figure
-hist(y_train - y_train_hat, 50)
-figure
-hist(y_test - y_test_hat, 50)
-
-%% steepest descent 
-rng('default')
-a_i = rand(17,1);
-epsilon = 10^-6;
-a2 = zeros(17,1);
-i= 1;
-while (norm(a_i - a2) > epsilon)
-    grad_a_i = - 2* X_train(:,5:end).' * y_train + 2 * X_train(:,5:end).' * X_train(:,5:end) * a_i;
-    hess_a_i = 4 * X_train(:,5:end).' * X_train(:,5:end);
-    a_ii = a_i - ((norm(grad_a_i)^2 * grad_a_i)/(grad_a_i.' * hess_a_i * grad_a_i));
-    a2 = a_i;
-    a_i = a_ii;
-end
-
+plot(y_test)
+grid on
+title('With L, test')
