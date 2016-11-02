@@ -71,7 +71,7 @@ misseddetection = falsinegativi / (veripositivi + falsinegativi);
 pi1 = size(y1,1)/ size(y,1);
 pi2 = size(y2,1)/ size(y,1);
 
-% perform PCR
+% perform PCA
 meany = mean(y);
 std_y = std(y);
 for i= 1:size(y)
@@ -85,7 +85,7 @@ R = (1/N) * y.' * y;
 [U, A] = eig(R);
 % DINAMICA L
 total_eig = sum(diag(A));
-percentage_thresh = 0.9 * total_eig;
+percentage_thresh = 0.999999 * total_eig;
 
 sum_diag = 0;
 L = 1;
@@ -95,8 +95,17 @@ while sum_diag < percentage_thresh
 end
 
 U_L = U(:, 1:L);
+A_L = A(1:L,1:L);
+
 Z = y * U_L;
-Rz = (1/size(Z,1)) * Z.' * Z; % perfettamente diagonale o circa?
+
+%Z_norm = (1 / sqrt(N)) * Z * A_L^(-1/2); % NORMALIZZAZIONE CHE DA PROBLEMI
+for i= 1:size(Z)
+Z_norm(i,:) = (Z(i,:) - mean(Z))./ std(Z);
+end
+Z = [];
+Z = Z_norm;
+Rz = (1/N) * Z.' * Z; 
 z1 = Z(ind_sani,:);
 z2 = Z(ind_malati,:);
 w1 = mean(z1,1);
@@ -110,9 +119,9 @@ dotprod2 = Z*wmeans'; % matrix with the dot product between
 [U2,V2]=meshgrid(enx2,eny2); 
 dist2_b=U2+V2-2*dotprod2; %|y(n)|^2+|x(k)|^2-2y(n)x(k)= 
 % =|y(n)-x(k)|^2
-var_patients = var(Z')';
-dist2_b(:,1) = dist2_b(:,1) - (2 * var_patients * log(pi1));
-dist2_b(:,2) = dist2_b(:,2) - (2 * var_patients * log(pi2));
+var_patients = var(Z);
+dist2_b(:,1) = dist2_b(:,1) - (2 * log(pi1));
+dist2_b(:,2) = dist2_b(:,2) - (2 * log(pi2));
 
 [dummy, previsione_bayes] = min(dist2_b.');
 previsione_bayes = previsione_bayes.';
@@ -141,3 +150,8 @@ specificity_b = verinegativi_b / (verinegativi_b + falsipositivi_b); % true nega
 sensitivity_b = veripositivi_b / (veripositivi_b + falsinegativi_b); % true positive
 falsealarm_b = falsipositivi_b / (verinegativi_b + falsipositivi_b); 
 misseddetection_b = falsinegativi_b / (veripositivi_b + falsinegativi_b);
+
+%%%%%% risolvi con formula di normalizzazione 
+%%%%% prova anche togliendo le feature/pazienti con diversi criteri (es.
+%%%%% una colonna che ? tutta nulla tranne in un punto) => var = 0
+
