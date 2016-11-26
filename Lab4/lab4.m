@@ -3,7 +3,7 @@ clear all
 clc
 
 load('arrhythmia.mat');
-rows_arrythmic = find(arrhythmia(:,end)>2);
+rows_arrythmic = find(arrhythmia(:,end)>1);
 arrhythmia(rows_arrythmic, end) = 2; 
 j=1;
 for i = 1:size(arrhythmia,2)
@@ -28,7 +28,7 @@ for i= 1:size(y)
 end
 y =y_norm;
 
-%% Class 1 e 2
+% Class 1 e 2
 
 ind_sani = find(class_id<2)';
 ind_malati = find(class_id>1)';
@@ -110,7 +110,7 @@ A_L = A(1:L,1:L);
 
 Z = y * U_L;
 
-% Z_norm_2 = (1 / sqrt(N)) * y * U_L * A_L^(-1/2); % NORMALIZZAZIONE CHE DA PROBLEMI
+%Z_norm = (1 / sqrt(N)) * Z * A_L^(-1/2); % NORMALIZZAZIONE CHE DA PROBLEMI
 for i= 1:size(Z)
 Z_norm(i,:) = (Z(i,:) - mean(Z))./ std(Z);
 end

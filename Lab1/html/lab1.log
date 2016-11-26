@@ -1,0 +1,397 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.27)  20 NOV 2016 15:51
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**lab1.tex
+(./lab1.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 142.
+)
+No file lab1.aux.
+\openout1 = `lab1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count88
+\scratchdimen=\dimen105
+\scratchbox=\box26
+\nofMPsegments=\count89
+\nofMParguments=\count90
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count91
+\MPscratchDim=\dimen106
+\MPnumerator=\count92
+\makeMPintoPDFobject=\count93
+\everyMPtoPDFconversion=\toks16
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 21.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 21.
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 52--52
+[]    \OT1/cmtt/m/n/10 patient_matrix = parkinsonsupdrs(find(parkinsonsupdrs(:,
+1)==k),:);[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 102--102
+[]    \OT1/cmtt/m/n/10 data_train_mid = matricepazienti(find(matricepazienti(:,
+1)==j),:);[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 102--102
+[]    \OT1/cmtt/m/n/10 data_test_mid = matricepazienti(find(matricepazienti(:,1
+)==j),:);[] 
+ []
+
+[1
+
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (143.24574pt too wide) in paragraph at lines 102--102
+[]        \OT1/cmtt/m/n/10 data_train_norm(i, z) = (data_train(i, z) - m_data_t
+rain(z)) / sqrt(v_data_train(z));[] 
+ []
+
+
+Overfull \hbox (132.74583pt too wide) in paragraph at lines 102--102
+[]        \OT1/cmtt/m/n/10 data_test_norm(i, z) = (data_test(i, z) - m_data_tra
+in(z)) / sqrt(v_data_train(z));[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 102--102
+[]\OT1/cmtt/m/n/10 y_train=data_train_norm(:,F0); %% feature che elimino e poi 
+vorr? stimare[] 
+ []
+
+
+Overfull \hbox (95.99615pt too wide) in paragraph at lines 125--125
+[]\OT1/cmtt/m/n/10 a_hat = inv(X_train(:,5:end).' * X_train(:,5:end)) * X_train
+(:,5:end).' * y_train; %[] 
+ []
+
+[2]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 136--136
+[]\OT1/cmtt/m/n/10 hist(y_test - y_test_hat, 50) %% dagli istogrammi capiamo ch
+e la dist[] 
+ []
+
+Package epstopdf Info: Source file: <lab1_01.eps>
+(epstopdf)                    date: 2016-11-20 15:49:39
+(epstopdf)                    size: 44982 bytes
+(epstopdf)             Output file: <lab1_01-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_01-eps-converted-to.p
+df lab1_01.eps>
+(epstopdf)             \includegraphics on input line 150.
+runsystem(repstopdf --outfile=lab1_01-eps-converted-to.pdf lab1_01.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_01-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:20
+(epstopdf)                    size: 15623 bytes.
+<lab1_01-eps-converted-to.pdf, id=13, 460.72125pt x 363.3575pt>
+File: lab1_01-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_01-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_01-eps-converted-to.pdf used on input line 150.
+(pdftex.def)             Requested size: 289.07999pt x 227.98497pt.
+Package epstopdf Info: Source file: <lab1_02.eps>
+(epstopdf)                    date: 2016-11-20 15:49:39
+(epstopdf)                    size: 17972 bytes
+(epstopdf)             Output file: <lab1_02-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_02-eps-converted-to.p
+df lab1_02.eps>
+(epstopdf)             \includegraphics on input line 152.
+runsystem(repstopdf --outfile=lab1_02-eps-converted-to.pdf lab1_02.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_02-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:20
+(epstopdf)                    size: 6377 bytes.
+
+<lab1_02-eps-converted-to.pdf, id=14, 466.74374pt x 363.3575pt>
+File: lab1_02-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_02-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_02-eps-converted-to.pdf used on input line 152.
+(pdftex.def)             Requested size: 289.07999pt x 225.05754pt.
+Package epstopdf Info: Source file: <lab1_03.eps>
+(epstopdf)                    date: 2016-11-20 15:49:40
+(epstopdf)                    size: 26068 bytes
+(epstopdf)             Output file: <lab1_03-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_03-eps-converted-to.p
+df lab1_03.eps>
+(epstopdf)             \includegraphics on input line 154.
+runsystem(repstopdf --outfile=lab1_03-eps-converted-to.pdf lab1_03.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_03-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:21
+(epstopdf)                    size: 5907 bytes.
+
+<lab1_03-eps-converted-to.pdf, id=15, 464.73625pt x 363.3575pt> [3 <./lab1_01-e
+ps-converted-to.pdf>]
+File: lab1_03-eps-converted-to.pdf Graphic file (type pdf)
+ <use lab1_03-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_03-eps-converted-to.pdf used on input line 154.
+(pdftex.def)             Requested size: 289.07999pt x 226.02226pt.
+Package epstopdf Info: Source file: <lab1_04.eps>
+(epstopdf)                    date: 2016-11-20 15:49:40
+(epstopdf)                    size: 23618 bytes
+(epstopdf)             Output file: <lab1_04-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_04-eps-converted-to.p
+df lab1_04.eps>
+(epstopdf)             \includegraphics on input line 156.
+runsystem(repstopdf --outfile=lab1_04-eps-converted-to.pdf lab1_04.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_04-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:21
+(epstopdf)                    size: 5706 bytes.
+
+<lab1_04-eps-converted-to.pdf, id=24, 459.7175pt x 363.3575pt>
+File: lab1_04-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_04-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_04-eps-converted-to.pdf used on input line 156.
+(pdftex.def)             Requested size: 289.07999pt x 228.5006pt.
+ [4 <./lab1_02-eps-converted-to.pdf> <./lab1_03-eps-converted-to.pdf>]
+Overfull \hbox (174.74547pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10 grad_a_i = - 2* X_train(:,5:end).' * y_train + 2 * X_tra
+in(:,5:end).' * X_train(:,5:end) * a_i;[] 
+ []
+
+[5 <./lab1_04-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <lab1_05.eps>
+(epstopdf)                    date: 2016-11-20 15:50:40
+(epstopdf)                    size: 44986 bytes
+(epstopdf)             Output file: <lab1_05-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_05-eps-converted-to.p
+df lab1_05.eps>
+(epstopdf)             \includegraphics on input line 204.
+runsystem(repstopdf --outfile=lab1_05-eps-converted-to.pdf lab1_05.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_05-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:22
+(epstopdf)                    size: 15730 bytes.
+
+<lab1_05-eps-converted-to.pdf, id=46, 460.72125pt x 363.3575pt>
+File: lab1_05-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_05-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_05-eps-converted-to.pdf used on input line 204.
+(pdftex.def)             Requested size: 289.07999pt x 227.98497pt.
+Package epstopdf Info: Source file: <lab1_06.eps>
+(epstopdf)                    date: 2016-11-20 15:50:41
+(epstopdf)                    size: 17982 bytes
+(epstopdf)             Output file: <lab1_06-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_06-eps-converted-to.p
+df lab1_06.eps>
+(epstopdf)             \includegraphics on input line 206.
+runsystem(repstopdf --outfile=lab1_06-eps-converted-to.pdf lab1_06.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_06-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:23
+(epstopdf)                    size: 6397 bytes.
+
+<lab1_06-eps-converted-to.pdf, id=47, 466.74374pt x 363.3575pt>
+File: lab1_06-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_06-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_06-eps-converted-to.pdf used on input line 206.
+(pdftex.def)             Requested size: 289.07999pt x 225.05754pt.
+Package epstopdf Info: Source file: <lab1_07.eps>
+(epstopdf)                    date: 2016-11-20 15:50:41
+(epstopdf)                    size: 26438 bytes
+(epstopdf)             Output file: <lab1_07-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_07-eps-converted-to.p
+df lab1_07.eps>
+(epstopdf)             \includegraphics on input line 208.
+runsystem(repstopdf --outfile=lab1_07-eps-converted-to.pdf lab1_07.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_07-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:23
+(epstopdf)                    size: 6059 bytes.
+
+<lab1_07-eps-converted-to.pdf, id=48, 464.73625pt x 362.35374pt> [6 <./lab1_05-
+eps-converted-to.pdf>]
+File: lab1_07-eps-converted-to.pdf Graphic file (type pdf)
+ <use lab1_07-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_07-eps-converted-to.pdf used on input line 208.
+(pdftex.def)             Requested size: 289.07999pt x 225.39789pt.
+Package epstopdf Info: Source file: <lab1_08.eps>
+(epstopdf)                    date: 2016-11-20 15:50:41
+(epstopdf)                    size: 25305 bytes
+(epstopdf)             Output file: <lab1_08-eps-converted-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=lab1_08-eps-converted-to.p
+df lab1_08.eps>
+(epstopdf)             \includegraphics on input line 210.
+runsystem(repstopdf --outfile=lab1_08-eps-converted-to.pdf lab1_08.eps)...execu
+ted safely (allowed).
+
+Package epstopdf Info: Result file: <lab1_08-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-11-20 15:51:24
+(epstopdf)                    size: 5836 bytes.
+
+<lab1_08-eps-converted-to.pdf, id=57, 459.7175pt x 363.3575pt>
+File: lab1_08-eps-converted-to.pdf Graphic file (type pdf)
+
+<use lab1_08-eps-converted-to.pdf>
+Package pdftex.def Info: lab1_08-eps-converted-to.pdf used on input line 210.
+(pdftex.def)             Requested size: 289.07999pt x 228.5006pt.
+ [7 <./lab1_06-eps-converted-to.pdf> <./lab1_07-eps-converted-to.pdf>]
+Overfull \hbox (174.74547pt too wide) in paragraph at lines 228--228
+[]    \OT1/cmtt/m/n/10 grad_a_i = - 2* X_train(:,5:end).' * y_train + 2 * X_tra
+in(:,5:end).' * X_train(:,5:end) * a_i;[] 
+ []
+
+
+Overfull \hbox (95.99615pt too wide) in paragraph at lines 228--228
+[]    \OT1/cmtt/m/n/10 a_ii = a_i - ((norm(grad_a_i)^2 * grad_a_i)/(grad_a_i.' 
+* hess_a_i * grad_a_i));[] 
+ []
+
+[8 <./lab1_08-eps-converted-to.pdf>] (./lab1.aux) ) 
+Here is how much of TeX's memory you used:
+ 1565 strings out of 493089
+ 23283 string characters out of 6134842
+ 83128 words of memory out of 5000000
+ 5054 multiletter control sequences out of 15000+600000
+ 4413 words of font info for 17 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 38i,6n,23p,234b,245s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on lab1.pdf (8 pages, 106432 bytes).
+PDF statistics:
+ 95 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -3,8 +3,8 @@ clear all
 clc
 
 load('updrs.mat')
-totalpatients = parkinsonsupdrs(size(parkinsonsupdrs,1),1);
-matricepazienti = zeros(1,22);
+totalpatients = parkinsonsupdrs(end,1);
+matricepazienti = zeros(1,size(parkinsonsupdrs,2));
 for k = 1:totalpatients
     patient_matrix = parkinsonsupdrs(find(parkinsonsupdrs(:,1)==k),:);
     patient_matrix(:,4) = abs(fix(patient_matrix(:,4)));
@@ -18,28 +18,43 @@ for k = 1:totalpatients
 end 
 
 matricepazienti = matricepazienti(2:end,:);
-matricepazienti_norm = (matricepazienti - (ones(size(matricepazienti,1),1)*mean(matricepazienti))) ./ sqrt(ones(size(matricepazienti,1),1)*var(matricepazienti));
+
 
 %%% Perform regression [1] 
+data_train=zeros(1,22);
+data_test=zeros(1,22);
+for j = 1 : 36
+    data_train_mid = matricepazienti(find(matricepazienti(:,1)==j),:);
+    data_train = [data_train;data_train_mid];
+end
+data_train = data_train(2:end,:);
 
-data_train = matricepazienti(matricepazienti(:,1)<37,:);
-data_test = matricepazienti(matricepazienti(:,1)>36,:);
+for j = 37 : 42
+    data_test_mid = matricepazienti(find(matricepazienti(:,1)==j),:);
+    data_test = [data_test;data_test_mid];
+end
+data_test = data_test(2:end,:);
 
-m_data_train=mean(data_train);
-v_data_train=var(data_train);
-o = ones(size(data_train,1),1);
-data_train_norm = data_train;
-data_train_norm(:,5:end) = (data_train(:,5:end) - o*m_data_train(:,5:end)) ./ sqrt(o*v_data_train(:,5:end));
+m_data_train=mean(data_train,1);
+v_data_train=var(data_train,1);
 
-mean_train_norm = mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
-var_train_norm = var(data_train_norm,1); 
+for i = 1:size(data_train,1)
+    data_train_norm(i, 1:4) = data_train(i, 1:4);
+    for z = 5:22
+        data_train_norm(i, z) = (data_train(i, z) - m_data_train(z)) / sqrt(v_data_train(z));
+    end
+end
+mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
+var(data_train_norm,1);
 
-o = ones(size(data_test,1),1);
-data_test_norm = data_test;
-data_test_norm(:,5:end) = (data_test(:,5:end) - o*m_data_train(:,5:end)) ./ sqrt(o*v_data_train(:,5:end));
-
-mean_test_norm = mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
-var_test_norm = var(data_train_norm,1);
+for i = 1:size(data_test,1)
+    data_test_norm(i, 1:4) = data_test(i, 1:4);
+    for z = 5:22
+        data_test_norm(i, z) = (data_test(i, z) - m_data_train(z)) / sqrt(v_data_train(z));
+    end
+end
+mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
+var(data_train_norm,1);
 
 % Perform regression [2]
 F0 = 7;
@@ -72,9 +87,9 @@ plot(y_test, '-r')
 
 %%% istogrammi
 figure
-hist(abs(y_train - y_train_hat), 50)
+hist(y_train - y_train_hat, 50)
 figure
-hist(abs(y_test - y_test_hat), 50) %% dagli istogrammi capiamo che la dist
+hist(y_test - y_test_hat, 50) %% dagli istogrammi capiamo che la dist
 % degli errori ? circa una gaussiana? a cosa ? dovuto?
 
 %%% CHIEDERE !!!!!! a^ che abbiamo trovato, per trovare la 7esima feature
@@ -132,28 +147,4 @@ while (norm(a_i - a2) > epsilon)
     a2 = a_i;
     a_i = a_ii;
 end
-a_hat = a_i;
-
-% stima valori _ train
-y_train_hat = X_train(:,5:end) * a_hat;
-
-figure
-plot(y_train_hat)
-hold on
-plot(y_train, '-r')
-
-% stima valori _ test
-y_test_hat = X_test(:,5:end) * a_hat;
-
-figure
-plot(y_test_hat)
-hold on
-plot(y_test, '-r')
-
-%%% istogrammi
-figure
-hist(y_train - y_train_hat, 50)
-figure
-hist(y_test - y_test_hat, 50)
-
 
