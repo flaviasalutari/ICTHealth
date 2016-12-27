@@ -36,14 +36,15 @@ dist2 = U+V-2*rhoy; %|y(n)|^2+|x(k)|^2-2y(n)x(k) =|y(n)-x(k)|^2
 %% Hard K-Means Algorithm
 
 K = 2;
+dist_2 = dist2;
 var_k = ones(1,K);
 pi_k =  1/K*ones(1,K);
 % xk_norm = (xk - mean(xk))./std(xk)
 patient_cluster = zeros(N,1);
 
-for i= 1:990
-    R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist2(:,1)/(2*var_k(1)));
-    R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist2(:,2)/(2*var_k(2)));
+for i= 1:9
+    R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist_2(:,1)/(2*var_k(1)));
+    R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist_2(:,2)/(2*var_k(2)));
 
     patient_cluster(find(R_k<R_j),1)=1;
     patient_cluster(find(R_k>=R_j),1)=2;
@@ -58,8 +59,8 @@ for i= 1:990
     var_k(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
     var_k(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
     
-    dist2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-    dist2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
+    dist_2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
+    dist_2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
  
 end
 
@@ -91,12 +92,12 @@ patient_cluster = zeros(N,1);
 
 x_k = rand(K,F);
 
-dist2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-dist2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
+dist__2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
+dist__2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
  
 for i= 1:990
-    R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist2(:,1)/(2*var_k(1)));
-    R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist2(:,2)/(2*var_k(2)));
+    R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist__2(:,1)/(2*var_k(1)));
+    R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist__2(:,2)/(2*var_k(2)));
 
     patient_cluster(find(R_k<R_j),1)=1;
     patient_cluster(find(R_k>=R_j),1)=2;
@@ -111,8 +112,8 @@ for i= 1:990
     var_k(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
     var_k(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
 
-        dist2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-    dist2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
+    dist__2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
+    dist__2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
 
 end
 
