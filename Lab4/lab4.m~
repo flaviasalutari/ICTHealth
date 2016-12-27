@@ -39,13 +39,13 @@ K = 2;
 var_k = ones(1,K);
 pi_k =  1/K*ones(1,K);
 % xk_norm = (xk - mean(xk))./std(xk)
+patient_cluster = zeros(N,1);
+dist2 = norm().
 
-
-for i= 1:10
+for i= 1:990
     R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist2(:,1)/(2*var_k(1)));
     R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist2(:,2)/(2*var_k(2)));
 
-    patient_cluster = zeros(N,1);
     patient_cluster(find(R_k<R_j),1)=1;
     patient_cluster(find(R_k>=R_j),1)=2;
     
@@ -62,3 +62,55 @@ for i= 1:10
 end
 
 
+[dummy,previsione]=min(dist2,[],2);
+N1=sum(class_id==1);
+N2=sum(class_id==2);
+false_positive=sum((previsione==2)&(class_id==1))/N1;
+true_positive=sum((previsione==2)&(class_id==2))/N2; 
+false_negative=sum((previsione==1)&(class_id==2))/N2;
+true_negative=sum((previsione==1)&(class_id==1))/N1;
+
+
+false_positive_c=sum((patient_cluster==2)&(class_id==1))/N1; 
+true_positive_c=sum((patient_cluster==2)&(class_id==2))/N2; 
+false_negative_c=sum((patient_cluster==1)&(class_id==2))/N2; 
+true_negative_c=sum((patient_cluster==1)&(class_id==1))/N1;
+
+
+
+%% Start from random initial vectors x_k 
+
+
+K = 2;
+var_k = ones(1,K);
+pi_k =  1/K*ones(1,K);
+% xk_norm = (xk - mean(xk))./std(xk)
+patient_cluster = zeros(N,1);
+
+
+for i= 1:990
+    R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist2(:,1)/(2*var_k(1)));
+    R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist2(:,2)/(2*var_k(2)));
+
+    patient_cluster(find(R_k<R_j),1)=1;
+    patient_cluster(find(R_k>=R_j),1)=2;
+    
+    w_1 = y(patient_cluster==1,:);
+    w_2 = y(patient_cluster==2,:);
+    pi_k(:,1) = length(w_1) / N;
+    pi_k(:,2) = length(w_2) / N;
+    x_k(1,:) = mean(w_1,1);
+    x_k(2,:) = mean(w_2,1);
+
+    var_k(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
+    var_k(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
+
+end
+
+
+
+
+false_positive_c=sum((patient_cluster==2)&(class_id==1))/N1; 
+true_positive_c=sum((patient_cluster==2)&(class_id==2))/N2; 
+false_negative_c=sum((patient_cluster==1)&(class_id==2))/N2; 
+true_negative_c=sum((patient_cluster==1)&(class_id==1))/N1;
