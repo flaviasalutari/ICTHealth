@@ -18,46 +18,31 @@ for k = 1:totalpatients
 end 
 
 matricepazienti = matricepazienti(2:end,:);
-
+matricepazienti_norm = (matricepazienti - (ones(size(matricepazienti,1),1)*mean(matricepazienti))) ./ sqrt(ones(size(matricepazienti,1),1)*var(matricepazienti));
 
 %%% Perform regression [1] 
-data_train=zeros(1,22);
-data_test=zeros(1,22);
-for j = 1 : 36
-    data_train_mid = matricepazienti(find(matricepazienti(:,1)==j),:);
-    data_train = [data_train;data_train_mid];
-end
-data_train = data_train(2:end,:);
 
-for j = 37 : 42
-    data_test_mid = matricepazienti(find(matricepazienti(:,1)==j),:);
-    data_test = [data_test;data_test_mid];
-end
-data_test = data_test(2:end,:);
+data_train = matricepazienti(matricepazienti(:,1)<37,:);
+data_test = matricepazienti(matricepazienti(:,1)>36,:);
 
-m_data_train=mean(data_train,1);
-v_data_train=var(data_train,1);
+m_data_train=mean(data_train);
+v_data_train=var(data_train);
+o = ones(size(data_train,1),1);
+data_train_norm = data_train;
+data_train_norm(:,5:end) = (data_train(:,5:end) - o*m_data_train(:,5:end)) ./ sqrt(o*v_data_train(:,5:end));
 
-for i = 1:size(data_train,1)
-    data_train_norm(i, 1:4) = data_train(i, 1:4);
-    for z = 5:22
-        data_train_norm(i, z) = (data_train(i, z) - m_data_train(z)) / sqrt(v_data_train(z));
-    end
-end
-mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
-var(data_train_norm,1);
+mean_train_norm = mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
+var_train_norm = var(data_train_norm,1); 
 
-for i = 1:size(data_test,1)
-    data_test_norm(i, 1:4) = data_test(i, 1:4);
-    for z = 5:22
-        data_test_norm(i, z) = (data_test(i, z) - m_data_train(z)) / sqrt(v_data_train(z));
-    end
-end
-mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
-var(data_train_norm,1);
+o = ones(size(data_test,1),1);
+data_test_norm = data_test;
+data_test_norm(:,5:end) = (data_test(:,5:end) - o*m_data_train(:,5:end)) ./ sqrt(o*v_data_train(:,5:end));
+
+mean_test_norm = mean(data_train_norm,1); % verify it is zero mean and va = 1?? 
+var_test_norm = var(data_train_norm,1);
 
 % Perform regression [2]
-F0 = 7; % // 5
+F0 = 5;
 y_train=data_train_norm(:,F0); %% feature che elimino e poi vorr? stimare
 X_train=data_train_norm;
 X_train(:,F0)=[];  %% tutte le feature senza F0 
@@ -65,7 +50,7 @@ X_train(:,F0)=[];  %% tutte le feature senza F0
 y_test=data_test_norm(:,F0); 
 X_test=data_test_norm;
 X_test(:,F0)=[];
-
+%%
 %%% PCR
 N = size(X_train,1);
 R = (1/N) * X_train(:,5:end).' * X_train(:,5:end);
@@ -123,8 +108,8 @@ y_hat_L = Z_norm_L * Z_y_L;
 
 a_hat_L = 1/N * U_L * inv(A_L) * U_L.' * X_train(:,5:end).' *y_hat_L;
 
-stima_L = X_train(:,5:end) * a_hat_L;
-stima_L_2 = X_test(:,5:end) * a_hat_L;
+stima_L = X_train(:, 5:end) * a_hat_L;
+stima_L_2 = X_test(:, 5:end) * a_hat_L;
 
 errore = norm(stima_L_2-y_test);
 

@@ -61,6 +61,10 @@ figure
 plot(y_train_hat)
 hold on
 plot(y_train, '-r')
+grid on
+legend('$\hat{y}\_train$','$y\_train$', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_train$ vs $y\_train$, MSE','Interpreter','latex')
 
 % stima valori _ test
 y_test_hat = X_test(:,5:end) * a_hat;
@@ -69,12 +73,21 @@ figure
 plot(y_test_hat)
 hold on
 plot(y_test, '-r')
+grid on
+legend('$\hat{y}\_test$','y\_test', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_test$ vs $y\_test$, MSE','Interpreter','latex')
 
 %%% istogrammi
 figure
-hist(abs(y_train - y_train_hat), 50)
+hist(y_train - y_train_hat, 50)
+title('$\hat{y}\_train - y\_train$, MSE','Interpreter','latex')
 figure
-hist(abs(y_test - y_test_hat), 50) %% dagli istogrammi capiamo che la dist
+[nb,xb] = hist(y_test - y_test_hat, 50, 'r');
+bh=bar(xb,nb);
+set(bh,'facecolor',[1 0 0]);
+title('$\hat{y}\_test - y\_test$, MSE','Interpreter','latex')
+%%% dagli istogrammi capiamo che la dist
 % degli errori ? circa una gaussiana? a cosa ? dovuto?
 
 %%% CHIEDERE !!!!!! a^ che abbiamo trovato, per trovare la 7esima feature
@@ -104,6 +117,11 @@ figure
 plot(y_train_hat)
 hold on
 plot(y_train, '-r')
+grid on
+legend('$\hat{y}\_train$','$y\_train$', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_train$ vs $y\_train$, Gradient Algorithm','Interpreter','latex')
+
 
 % stima valori _ test
 y_test_hat = X_test(:,5:end) * a_hat;
@@ -112,13 +130,19 @@ figure
 plot(y_test_hat)
 hold on
 plot(y_test, '-r')
-
+grid on
+legend('$\hat{y}\_test$','y\_test', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_test$ vs $y\_test$, Gradient Algorithm','Interpreter','latex')
 %%% istogrammi
 figure
 hist(y_train - y_train_hat, 50)
+title('$\hat{y}\_train - y\_train$, Gradient Algorithm','Interpreter','latex')
 figure
-hist(y_test - y_test_hat, 50)
-
+[nb,xb] =hist(y_test - y_test_hat, 50, 'r');
+bh=bar(xb,nb);
+set(bh,'facecolor',[1 0 0]);
+title('$\hat{y}\_test - y\_test$, Gradient Algorithm','Interpreter','latex')
 %% steepest descent 
 rng('default')
 a_i = rand(17,1);
@@ -141,19 +165,32 @@ figure
 plot(y_train_hat)
 hold on
 plot(y_train, '-r')
+grid on
+legend('$\hat{y}\_train$','$y\_train$', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_train$ vs $y\_train$, Steepest Descent','Interpreter','latex')
+
+% 
+% 
 
 % stima valori _ test
 y_test_hat = X_test(:,5:end) * a_hat;
-
 figure
 plot(y_test_hat)
 hold on
 plot(y_test, '-r')
+grid on
+legend('$\hat{y}\_test$','y\_test', 'Location', 'northwest')
+set(legend,'Interpreter','latex')
+title('$\hat{y}\_test$ vs $y\_test$, Steepest Descent','Interpreter','latex')
 
 %%% istogrammi
 figure
 hist(y_train - y_train_hat, 50)
+title('$\hat{y}\_train - y\_train$, Steepest Descent','Interpreter','latex')
 figure
-hist(y_test - y_test_hat, 50)
-
+[nb,xb] =hist(y_test - y_test_hat, 50, 'r');
+bh=bar(xb,nb);
+set(bh,'facecolor',[1 0 0]);
+title('$\hat{y}\_test - y\_test$, Steepest Descent','Interpreter','latex')
 
