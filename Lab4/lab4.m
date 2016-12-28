@@ -6,7 +6,7 @@ load('arrhythmia.mat');
 rows_arrythmic = find(arrhythmia(:,end)>2);
 arrhythmia(rows_arrythmic, end) = 2; 
 
-arrhythmia(:, find(sum(abs(arrhythmia)) == 0)) = []; %remove null columns
+arrhythmia(:, sum(abs(arrhythmia)) == 0) = []; %remove null columns
 
 class_id = arrhythmia(:,end);
 y = arrhythmia(:,1: end-1);
@@ -46,22 +46,41 @@ for i= 1:2
     R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist_2(:,1)/(2*var_k(1)));
     R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist_2(:,2)/(2*var_k(2)));
 
-    patient_cluster(find(R_k<R_j),1)=1;
-    patient_cluster(find(R_k>=R_j),1)=2;
+    patient_cluster(R_k<R_j,1)=1;
+    patient_cluster(R_k>=R_j,1)=2;
     
     w_1 = y(patient_cluster==1,:);
+    Nw1 = size(w_1,1);
     w_2 = y(patient_cluster==2,:);
-    pi_k(:,1) = length(w_1) / N;
-    pi_k(:,2) = length(w_2) / N;
-    x_k(1,:) = mean(w_1,1);
-    x_k(2,:) = mean(w_2,1);
+    Nw2 = size(w_2,1);
 
-    var_k(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
-    var_k(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
+    pi_k(1) = Nw1 / N;
+    pi_k(2) = Nw2 / N;
+    x_k(1,:) = sum(w_1,1)/Nw1;
+    x_k(2,:) = sum(w_2,1)/Nw2;
+%     x_k(1,:) = mean(w_1);
+%     x_k(2,:) = mean(w_2);
     
-    dist_2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-    dist_2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
- 
+% 
+%     var_k_(1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
+%     var_k(2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
+%     
+var_k(1)=0;
+var_k(2)=0;
+    for j = 1:Nw1
+        temp = norm(w_1(j,:)-x_k(1,:)).^2;
+        var_k(1) = var_k(1) + temp;
+    end
+    for j = 1:Nw2
+        temp = norm(w_2(j,:)-x_k(2,:)).^2;
+        var_k(2) = var_k(2) + temp;
+    end    
+    var_k(1) = var_k(1)/((Nw1 - 1)*F);
+    var_k(2) = var_k(2)/((Nw2 - 1)*F);
+    for j =1:N
+        dist_2(j,1) = norm(y(j,:)-x_k(1,:)).^2;
+        dist_2(j,2) = norm(y(j,:)-x_k(2,:)).^2;
+    end
 end
 
 
@@ -92,35 +111,58 @@ patient_cluster = zeros(N,1);
 
 x_k = rand(K,F);
 
-dist__2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-dist__2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
+for i=1:N
+dist__2(i,1) = norm(y(i,:)-x_k(1,:)).^2;
+dist__2(i,2) = norm(y(i,:)-x_k(2,:)).^2;
+end
+
  
-for i= 1:990
+for i= 1:2
     R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist__2(:,1)/(2*var_k(1)));
     R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist__2(:,2)/(2*var_k(2)));
 
-    patient_cluster(find(R_k<R_j),1)=1;
-    patient_cluster(find(R_k>=R_j),1)=2;
+    patient_cluster(R_k<R_j,1)=1;
+    patient_cluster(R_k>=R_j,1)=2;
     
     w_1 = y(patient_cluster==1,:);
+    Nw1 = size(w_1,1);
     w_2 = y(patient_cluster==2,:);
-    pi_k(:,1) = length(w_1) / N;
-    pi_k(:,2) = length(w_2) / N;
-    x_k(1,:) = mean(w_1,1);
-    x_k(2,:) = mean(w_2,1);
+    Nw2 = size(w_2,1);
 
-    var_k(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
-    var_k(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
-
-    dist__2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
-    dist__2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
+    pi_k(:,1) = Nw1 / N;
+    pi_k(:,2) = Nw2 / N;
+    x_k(1,:) = sum(w_1,1)/Nw1;
+    x_k(2,:) = sum(w_2,1)/Nw2;
+%     x_k(1,:) = mean(w_1);
+%     x_k(2,:) = mean(w_2);
+   
+    var_k(1)=0;
+    var_k(2)=0;
+    for j = 1:Nw1
+        temp = norm(w_1(j,:)-x_k(1,:)).^2;
+        var_k(1) = var_k(1) + temp;
+    end
+    for j = 1:Nw2
+        temp = norm(w_2(j,:)-x_k(2,:)).^2;
+        var_k(2) = var_k(2) + temp;
+    end    
+    var_k(1) = var_k(1)/((Nw1 - 1)*F);
+    var_k(2) = var_k(2)/((Nw2 - 1)*F);
+    for j =1:N
+        dist__2(j,1) = norm(y(j,:)-x_k(1,:)).^2;
+        dist__2(j,2) = norm(y(j,:)-x_k(2,:)).^2;
+    end
+%     var_k2(:,1) = sum(norm(bsxfun(@minus,w_1,x_k(1,:))).^2) /((length(w_1) - 1)*F);
+%     var_k2(:,2) = sum(norm(bsxfun(@minus,w_2,x_k(2,:))).^2) /((length(w_2) - 1)*F);
+% 
+%     dist__2(:,1) = norm(bsxfun(@minus,y,x_k(1,:))).^2;
+%     dist__2(:,2) = norm(bsxfun(@minus,y,x_k(2,:))).^2;
 
 end
-
-
 
 
 false_positive_c_INIT=sum((patient_cluster==2)&(class_id==1))/N1; 
 true_positive_c_INIT=sum((patient_cluster==2)&(class_id==2))/N2; 
 false_negative_c_INIT=sum((patient_cluster==1)&(class_id==2))/N2; 
 true_negative_c_INIT=sum((patient_cluster==1)&(class_id==1))/N1;
+
