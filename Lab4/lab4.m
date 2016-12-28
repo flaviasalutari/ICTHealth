@@ -42,7 +42,7 @@ pi_k =  1/K*ones(1,K);
 % xk_norm = (xk - mean(xk))./std(xk)
 patient_cluster = zeros(N,1);
 
-for i= 1:9
+for i= 1:2
     R_k = (pi_k(1)/((2*pi*var_k(1))^(N/2)))*exp(-dist_2(:,1)/(2*var_k(1)));
     R_j = (pi_k(2)/((2*pi*var_k(2))^(N/2)))*exp(-dist_2(:,2)/(2*var_k(2)));
 
